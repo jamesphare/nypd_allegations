@@ -51,4 +51,47 @@ ggplot(precinct_allegations) +
         
 ```
 
-The most substantiated complaints by far are found in the seventy-fifth precinct in East New York, Brooklyn, the location of a major corruption scandal, but nearby neighborhoods in Brooklyn also see a disproportionate number of complaints, as does the South Bronx. This looks like a map of overpolicing minoritized communities. 
+The most substantiated complaints by far are found in the seventy-fifth precinct in East New York, Brooklyn, the location of a major corruption scandal, but nearby neighborhoods in Brooklyn also see a disproportionate number of complaints, as does the South Bronx. This looks like a map of over-policing minoritized communities.
+
+The ProPublica database records the ethinicity of both the complainant and the accused officer. 
+
+```{r}
+cops <- allegations %>%
+        group_by(unique_mos_id) %>%
+        summarise(ethnicity = mos_ethnicity,
+                  type = "Accused Officers") %>%
+        distinct(.keep_all = TRUE)
+
+ethnicity <- allegations %>%
+        group_by(complaint_id) %>%
+        summarise(ethnicity = complainant_ethnicity,
+                  type = "Complainants") %>%
+        distinct(.keep_all = TRUE) %>%
+        rbind(cops) %>%
+        filter(!(is.na(ethnicity)),
+               ethnicity != "Unknown",
+               ethnicity != "Refused")
+
+remove(cops)
+
+ggplot(ethnicity) +
+        geom_bar(aes(ethnicity, fill = ethnicity)) +
+        facet_wrap(~ type, scales = "free_x") +
+        coord_flip() +
+        labs(title = "Complaints Against NYPD by Ethnicity, 1985 to 2020",
+             subtitle = "Most accused officers are white, most complainants are Black",
+             caption = "Source: ProPublica",
+             x = "Ethnicity",
+             y = NULL) +
+        theme(panel.grid.major = element_blank(), 
+              panel.grid.minor = element_blank(),
+              panel.background = element_blank(),
+              axis.ticks.y = element_blank(),
+              legend.position = "none") +
+        scale_fill_brewer()
+        
+        
+```
+
+A majority of officers who have substantiated complaints against them are white while, in cases where the ethnicity is known, a majority of complainants are Black.
+

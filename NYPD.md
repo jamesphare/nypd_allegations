@@ -32,4 +32,14 @@ distributed geographically, and that is the case here.
 The most substantiated complaints by far are found in the seventy-fifth
 precinct in East New York, Brooklyn, the location of a major corruption
 scandal, but nearby neighborhoods in Brooklyn also see a
-disproportionate number of complaints, as does the South Bronx.
+disproportionate number of complaints, as does the South Bronx. This
+looks like a map of over-policing minoritized communities.
+
+The ProPublica database records the ethinicity of both the complainant
+and the accused officer.
+
+![](NYPD_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+A majority of officers who have substantiated complaints against them
+are white while, in cases where the ethnicity is known, a majority of
+complainants are Black.
