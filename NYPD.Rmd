@@ -59,14 +59,12 @@ The ProPublica database records the ethnicity of both the complainant and the ac
 cops <- allegations %>%
         group_by(unique_mos_id) %>%
         summarise(ethnicity = mos_ethnicity,
-                  type = "Accused Officers") %>%
-        distinct(.keep_all = TRUE)
+                  type = "Accused Officers")
 
 ethnicity <- allegations %>%
         group_by(complaint_id) %>%
         summarise(ethnicity = complainant_ethnicity,
                   type = "Complainants") %>%
-        distinct(.keep_all = TRUE) %>%
         rbind(cops) %>%
         filter(!(is.na(ethnicity)),
                ethnicity != "Unknown",
@@ -79,8 +77,9 @@ ggplot(ethnicity) +
         facet_wrap(~ type, scales = "free_x") +
         coord_flip() +
         labs(title = "Complaints Against NYPD by Ethnicity, 1985 to 2020",
-             subtitle = "Most accused officers are white, most complainants are Black",
-             caption = "Source: ProPublica",
+             subtitle = "White police receive most complaints, most complainants are Black",
+             caption = "Does not include cases where ethnicity is unkown
+             Source: ProPublica",
              x = NULL,
              y = NULL) +
         theme(panel.grid.major = element_blank(), 
@@ -94,4 +93,62 @@ ggplot(ethnicity) +
 ```
 
 A majority of officers who have substantiated complaints against them are white while, in cases where the ethnicity is known, a majority of complainants are Black.
+
+When we take a look at the ethnicity of the accused police officers, however, their ethnicity does not seem to make much of a difference.
+
+```{r}
+allegations %>%
+        filter(!(is.na(complainant_ethnicity)),
+               complainant_ethnicity != "Unknown",
+               complainant_ethnicity != "Refused") %>%
+ggplot() +
+        geom_bar(aes(complainant_ethnicity, fill = complainant_ethnicity)) +
+        facet_wrap(~ mos_ethnicity, scales = "free_x") +
+        coord_flip() +
+        labs(title = "Complaints Against NYPD by Ethnicity, 1985 to 2020",
+             subtitle = "Grouped by Officer's Ethnicity",
+             caption = "Does not include cases where ethnicity is unkown
+             Source: ProPublica",
+             x = "Complainant's Ethnicity",
+             y = NULL) +
+        theme(panel.grid.major = element_blank(), 
+              panel.grid.minor = element_blank(),
+              panel.background = element_blank(),
+              axis.ticks.y = element_blank(),
+              legend.position = "none") +
+        scale_fill_brewer()
+```
+
+Officers of every ethnicity receive disproportionate complaints from Black people. White officers have a greater overall number of complaints, regardless of complainant's ethnicity. It's not clear whether this number is disproportionate to the number of white police in New York, but the disproportionate number of white officers is itself a symptom of systemic racism within the NYPD.
+
+Similarly, officer's gender does not seem to make a difference when it comes to racist policing.
+
+```{r}
+allegations %>%
+        filter(!(is.na(complainant_ethnicity)),
+               complainant_ethnicity != "Unknown",
+               complainant_ethnicity != "Refused") %>%
+        mutate(mos_gender = if_else(mos_gender == "F", "Women", "Men")) %>%
+ggplot() +
+        geom_bar(aes(complainant_ethnicity, fill = complainant_ethnicity)) +
+        facet_wrap(~ mos_gender, scales = "free_x") +
+        coord_flip() +
+        labs(title = "Complaints Against NYPD by Ethnicity, 1985 to 2020",
+             subtitle = "Grouped by Officer's Gender",
+             caption = "Does not include cases where ethnicity is unkown
+             Only binary gender recorded
+             Source: ProPublica",
+             x = "Complainant's Ethnicity",
+             y = NULL) +
+        theme(panel.grid.major = element_blank(), 
+              panel.grid.minor = element_blank(),
+              panel.background = element_blank(),
+              axis.ticks.y = element_blank(),
+              legend.position = "none") +
+        scale_fill_brewer()
+```
+
+The same pattern of complaints holds whether the officer in question is a man or a woman. Men receive many, many more complaints overall but whether this is out of proportion to their numbers on the force during this time period would require a different data set.
+
+The data recorded here are at best a limited and partial record of alleged police misconduct in New York City, but they seem to indicate systemically racist policing regardless of the race or gender of individual officers.
 
