@@ -1,7 +1,7 @@
 Allegations Against the NYPD
 ================
-James Hare
-7/27/2020
+James P. Hare
+7/28/2020
 
 Following a change to the New York law that kept police officers’
 disciplinary records secret—and amid an ongoing lawsuit—ProPublica has
@@ -17,25 +17,26 @@ extremely circumscribed, and these data reflect its
 The CCRB “exonerates” officers whose conduct is ruled to fall within
 departmental guidelines, no matter how egregious. Allegations may remain
 “unsubstantiated” due to a routine lack of NYPD cooperation (in
-violation of the law). Even “substantiated” allegations lead only to
+violation of the law), and even “substantiated” allegations lead only to
 suggestions, which the department is free to ignore.
 
 Even a quick glance through these records turns up numerous officers who
-have faced repeated, serious misconduct allegations while rising through
-the ranks. But first, it’s worth looking at these data from a bird’s eye
-view. Anyone who is familiar with New York City would not expect police
-misconduct—and thus complaints about police misconduct—to be evenly
-distributed geographically, and that is the case here.
+have faced repeated, serious, substantiated misconduct allegations while
+rising through the ranks. But looking at these data from a bird’s eye
+view also reveals some striking patterns in the complaints against NYPD
+misconduct. Anyone who is familiar with New York City would not expect
+police misconduct—and thus complaints about police misconduct—to be
+evenly distributed geographically, and that is the case here.
 
 ![](NYPD_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
 The most substantiated complaints by far are found in the seventy-fifth
 precinct in East New York, Brooklyn, the location of a major corruption
 scandal, but nearby neighborhoods in Brooklyn also see a
-disproportionate number of complaints, as does the South Bronx. This
-looks like a map of over-policing minoritized communities.
+disproportionate number of complaints, as does the South Bronx. This map
+seems to show the results of over-policing minoritized communities.
 
-The ProPublica database records the ethinicity of both the complainant
+The ProPublica database records the ethnicity of both the complainant
 and the accused officer.
 
 ![](NYPD_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
