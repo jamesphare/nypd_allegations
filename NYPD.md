@@ -72,8 +72,8 @@ it does not seem to make much of a difference.
 
 Officers of every ethnicity commit substantiated cases of misconduct
 against Black people at similar rates. White officers have a much
-greater overall number of complaints, regardless of complainant’s
-ethnicity. It’s not clear from this data set whether this number is
+greater overall number of cases, regardless of complainant’s ethnicity.
+It’s not clear from this data set whether this number is
 disproportionate to the number of white police in New York during this
 time period, but the disproportionate number of white officers is itself
 a symptom of systemic racism within the NYPD.
@@ -84,9 +84,9 @@ comes to racist policing.
 ![](NYPD_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 The same pattern of misconduct holds whether the officer in question is
-a man or a woman. Men receive many, many more complaints overall but
-whether this is out of proportion to their numbers on the force during
-this time period would require a different data set to determine.
+a man or a woman. Men commit many, many more acts of misconduct overall
+but whether this is out of proportion to their numbers on the force
+during this time period would require a different data set to determine.
 
 The data analyzed here are limited and partial, but they corroborate
 what Black New Yorkers, other New Yorkers of color, and their white
